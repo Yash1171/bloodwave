@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { CardHeader, CardContent, Card } from "@/components/ui/card"
 
-export default function LoginPageV0() {
+export default function RegisterPageV0() {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="px-4 lg:px-6 h-14 flex items-center">
@@ -27,7 +27,7 @@ export default function LoginPageV0() {
       <main className="flex-1 flex items-center justify-center bg-white">
         <Card className="w-full max-w-md p-6 md:p-8 bg-red-50">
           <CardHeader>
-            <h2 className="text-2xl font-bold tracking-tighter text-center sm:text-3xl md:text-4xl">Log In</h2>
+            <h2 className="text-2xl font-bold tracking-tighter text-center sm:text-3xl md:text-4xl">Register</h2>
           </CardHeader>
           <CardContent>
             <input
@@ -39,13 +39,18 @@ export default function LoginPageV0() {
               placeholder="Password"
               type="password"
             />
+            <input
+              className="w-full p-2 mb-4 border border-gray-200 rounded focus:outline-none focus:ring-1 focus:ring-red-400"
+              placeholder="Re-Enter Password"
+              type="password"
+            />
             <button className="w-full h-9 items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-700 focus:outline-none focus:ring-1 focus:ring-red-700 disabled:pointer-events-none disabled:opacity-50">
-              Log In
+              Register
             </button>
             <p className="mt-4 text-center text-gray-500">
-              Don&apos;t have an account?{' '}
-              <Link className="font-medium text-red-600 hover:underline" href="/register">
-                Register
+              Already have an account?{' '}
+              <Link className="font-medium text-red-600 hover:underline" href="/login">
+                Login
               </Link>
             </p>
           </CardContent>
