@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model BloodBank {
+  id           Int     @id @default(autoincrement())
+  name         String
+  address      String
+  contact      String
+  districtCode String
+  category     Category
+  type         Type
+
+  // Relationship with BloodAvailability
+  blood BloodAvailability[]
+}
+
+model BloodAvailability {
+  id             Int            @id @default(autoincrement())
+  bloodBankId    Int
+  bloodType      BloodType
+  bloodComponent BloodComponent
+  quantity       Int
+  // Relationship with BloodBank
+  bloodBank      BloodBank      @relation(fields: [bloodBankId], references: [id], onDelete: Cascade)
+}
+
+enum Category {
+  PVT
+  GOVT
+  RED_CROSS
+}
+
+enum Type {
+  BloodBank
+  BSU
+}
+
+enum BloodType {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+  OH_POSITIVE
+  OH_NEGATIVE
+}
+
+enum BloodComponent {
+  WHOLE_BLOOD
+  SINGLE_DONOR_PLATELET
+  SINGLE_DONOR_PLASMA
+  SAGM_PACKED_RED_BLOOD_CELLS
+  RANDOM_DONOR_PLATELETS
+  PLATELETS_ADDITIVE_SOLUTIONS
+  PLATELET_RICH_PLASMA
+  PLATELET_CONCENTRATE
+  PLASMA
+  PACKED_RED_BLOOD_CELLS
+  LEUKOREDUCED_RBC
+  IRRADIATED_RBC
+  FRESH_FROZEN_PLASMA
+  CRYOPRECIPITATE
+  CRYO_POOR_PLASMA
+}

@@ -39,7 +39,7 @@ export function HomePageV0() {
               <div className="space-x-4">
                 <Link
                   className="inline-flex h-9 items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-700 focus:outline-none focus:ring-1 focus:ring-red-700 disabled:pointer-events-none disabled:opacity-50"
-                  href="/chart"
+                  href="/blood-availability"
                 >
                   Find Blood
                 </Link>
