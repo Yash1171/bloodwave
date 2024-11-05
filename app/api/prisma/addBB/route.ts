@@ -34,6 +34,7 @@ export async function GET() {
   //       type: bloodbank.type === "BSU" ? "BSU" : "BloodBank",
   //     }
   //   });
+  for (const bloodbank of finalBloodBankData) {
     const avl = Object.keys(bloodbank).filter(key => key in BloodComponent);
     avl.map(async key => {
       const bc = bloodbank[key];
