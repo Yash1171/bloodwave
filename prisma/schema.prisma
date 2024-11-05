@@ -15,7 +15,7 @@ datasource db {
 
 model BloodBank {
   id           Int     @id @default(autoincrement())
-  name         String  @id
+  name         String  @unique
   address      String
   contact      String
   districtCode String
