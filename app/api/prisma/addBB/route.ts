@@ -17,24 +17,24 @@ export async function GET() {
   //   }))
   // })
 
-  // for (const bloodbank of finalBloodBankData) {
-  //   const db_bloodbank = await db.bloodBank.upsert({
-  //     where: {
-  //       address: bloodbank.address,
-  //       name: bloodbank.name,
-  //       contact: bloodbank.contactDetails
-  //     },
-  //     update: {},
-  //     create: {
-  //       address: bloodbank.address,
-  //       name: bloodbank.name,
-  //       contact: bloodbank.contactDetails,
-  //       districtCode: bloodbank.districtCode,
-  //       category: bloodbank.category === "Govt." ? "GOVT" : bloodbank.category === "Private" ? "PVT" : "RED_CROSS",
-  //       type: bloodbank.type === "BSU" ? "BSU" : "BloodBank",
-  //     }
-  //   });
   for (const bloodbank of finalBloodBankData) {
+    const db_bloodbank = await db.bloodBank.upsert({
+      where: {
+        address: bloodbank.address,
+        name: bloodbank.name,
+        contact: bloodbank.contactDetails
+      },
+      update: {},
+      create: {
+        address: bloodbank.address,
+        name: bloodbank.name,
+        contact: bloodbank.contactDetails,
+        districtCode: bloodbank.districtCode,
+        category: bloodbank.category === "Govt." ? "GOVT" : bloodbank.category === "Private" ? "PVT" : "RED_CROSS",
+        type: bloodbank.type === "BSU" ? "BSU" : "BloodBank",
+      }
+    });
+  
     const avl = Object.keys(bloodbank).filter(key => key in BloodComponent);
     avl.map(async key => {
       const bc = bloodbank[key];
