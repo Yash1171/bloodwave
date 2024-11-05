@@ -6,16 +6,16 @@ import { NextResponse } from "next/server";
 import { BloodComponent } from "@prisma/client";
 
 export async function GET() {
-  // await db.bloodBank.createMany({
-  //   data: finalBloodBankData.map((bloodbank) => ({
-  //     name: bloodbank.name,
-  //     address: bloodbank.address,
-  //     contact: bloodbank.contactDetails,
-  //     districtCode: bloodbank.districtCode,
-  //     category: bloodbank.category === "Govt." ? "GOVT" : bloodbank.category === "Private" ? "PVT" : "RED_CROSS",
-  //     type: bloodbank.type === "BSU" ? "BSU" : "BloodBank",
-  //   }))
-  // })
+  await db.bloodBank.createMany({
+    data: finalBloodBankData.map((bloodbank) => ({
+      name: bloodbank.name,
+      address: bloodbank.address,
+      contact: bloodbank.contactDetails,
+      districtCode: bloodbank.districtCode,
+      category: bloodbank.category === "Govt." ? "GOVT" : bloodbank.category === "Private" ? "PVT" : "RED_CROSS",
+      type: bloodbank.type === "BSU" ? "BSU" : "BloodBank",
+    }))
+  })
 
   for (const bloodbank of finalBloodBankData) {
     const db_bloodbank = await db.bloodBank.upsert({
